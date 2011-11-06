@@ -78,12 +78,14 @@ based on certain facts, this program followed few rules & hypotheses:
                                  
                          BLOCKED
 
-2) Simulator CPU only pick process from ready queue for running, 
+2) all process in input file but not encounter their arrival cycle yet, will be marked as status "NEW"
+
+3) Simulator CPU only pick process from ready queue for running, 
    therefore, blocked process cannot become running immediately, instead, it should become ready first.
  
-3) Assume all processes' ids are consecutive positive decimal integers, from m to n (0 <= m < n < infinite).
+4) Assume all processes' ids are consecutive positive decimal integers, from m to n (0 <= m < n < infinite).
 
-4) Weak input error detection, based on project requirement, assuming all inputs are correct.  
+5) Weak input error detection, based on project requirement, assuming all inputs are correct.  
 
 
 //=========Basic implementation introduction========//
@@ -126,6 +128,10 @@ based on certain facts, this program followed few rules & hypotheses:
 	  	   
 4. FCFS, RR, SJFS has the same basic logit that has been defined in their super class: Strategy.
    they only need to override their own running arbitrate & queue sorting & preemptive detection functions.
+
+5. If processes come after cpu running for a few cycles (all processes are NEW at a certain cycle), 
+   e.g. input2.txt, 
+   program will indicate CPU is idle and output CPU IDLE 
 
 //===========FCFS specific==========//
 
