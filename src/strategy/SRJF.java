@@ -1,6 +1,9 @@
-package scheduler;
+package strategy;
 
 import java.util.*;
+
+import scheduler.Process;
+import scheduler.*;
 
 /**
  * Shortest remaining Job First control class

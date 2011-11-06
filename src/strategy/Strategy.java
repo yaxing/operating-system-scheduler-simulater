@@ -1,6 +1,9 @@
-package scheduler;
+package strategy;
 
 import java.util.ArrayList;
+
+import scheduler.*;
+import scheduler.Process;
 
 /**
  * Super class of scheduler strategies

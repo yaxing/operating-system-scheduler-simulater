@@ -1,6 +1,9 @@
-package scheduler;
+package strategy;
 
 import java.util.ArrayList;
+
+import scheduler.Process;
+import scheduler.*;
 
 public class RR extends Strategy{
 	

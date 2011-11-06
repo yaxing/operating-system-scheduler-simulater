@@ -1,6 +1,9 @@
-package scheduler;
+package strategy;
 
 import java.util.ArrayList;
+
+import scheduler.Process;
+import scheduler.Status;
 
 /**
  * First Come First Serve control class
