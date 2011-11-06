@@ -24,6 +24,9 @@ public class Scheduler {
 		int strategy = -1;
 		int mode = 0;
 		
+		args = new String[1];
+		args[0] = "inp2.txt";
+		
 		try {
 			if(args == null || args.length == 0) {
 				throw new Exception();

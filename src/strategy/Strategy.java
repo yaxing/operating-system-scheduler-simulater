@@ -203,12 +203,15 @@ abstract public class Strategy {
 				end &= true;
 			}
 			else {
+				end &= false;
 				if(s == Status.NEW) {
 					continue;
 				}
 				buf.append(" " + i + ":" + s);
-				end &= false;
 			}
+		}
+		if(buf.length() == 0) {
+			buf.append(" CPU IDLE");
 		}
 		return end;
 	}
