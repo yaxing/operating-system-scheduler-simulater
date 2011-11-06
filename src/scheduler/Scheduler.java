@@ -2,7 +2,7 @@ package scheduler;
 
 import java.util.*;
 
-import strategy.SRJF;
+import strategy.*;
 
 /**
  * main class
@@ -39,10 +39,12 @@ public class Scheduler {
 		switch(method) {
 		case 0:
 			//FCFS ctrl = new FCFS();
-			SRJF ctrl = new SRJF();
+			//SRJF ctrl = new SRJF();
+			RR ctrl = new RR();
 			ctrl.start(proc, procStatus);
 			//Tool.writeFile("out_fcfs.txt");
-			Tool.writeFile("out_srjf.txt");
+			//Tool.writeFile("out_srjf.txt");
+			Tool.writeFile("out_rr.txt");
 			break;
 		default:
 			break;

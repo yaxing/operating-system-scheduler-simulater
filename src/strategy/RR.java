@@ -24,20 +24,22 @@ public class RR extends Strategy{
 	@Override
 	protected void handleRunning() {
 		if(running != -1) {
-			if(isPreemptive) {
-				chkPreemptive();
-			}
 			Process curP = proc.get(running);
 			if(curP.runCycle == curP.cpuTime) {
 				procStatus[running] = null;
 				curP.finishCycle = cycle - 1;
 				running = -1;
 			}
-			else if(curP.ioTime > 0 && (curP.runCycle == curP.cpuTime / 2 || curP.runCycle % 2 == 0)) {
+			else if(curP.ioTime > 0 && curP.runCycle == curP.cpuTime / 2) {
 				insertIntoQueue(running, blockedQ);
 				procStatus[running] = Status.BLOCKED;
 				running = -1;
 				curP.ioTime --;
+			}
+			else if(curP.runCycle > 0 && curP.runCycle % 2 == 0) {
+				insertIntoQueue(running, readyQ);
+				procStatus[running] = Status.READY;
+				running = -1;
 			}
 			else {
 				curP.runCycle ++;
@@ -72,7 +74,22 @@ public class RR extends Strategy{
 	 */
 	@Override
 	protected void insertIntoQueue(int procId, ArrayList<Integer> queue) {
-		
+		if(queue.size() == 0) {
+			queue.add(0, procId);
+			return;
+		}
+		Process curP = proc.get(procId);
+		for(int i = 0; i < queue.size(); i ++) {
+			if(proc.get(queue.get(i)).id > curP.id) {
+				queue.add(i, procId);
+				break;
+			}
+			else if(i == queue.size() - 1) {
+				queue.add(procId);
+				break;
+			}
+		}
+		return;
 	}
 
 }
