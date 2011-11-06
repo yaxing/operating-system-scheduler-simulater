@@ -17,6 +17,7 @@ public class Tool {
 			BufferedWriter out = new BufferedWriter(new FileWriter(new File(fileName)));
 			out.write(outputBuffer.toString());
 			out.close();
+			outputBuffer = new StringBuilder();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

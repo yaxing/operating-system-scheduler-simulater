@@ -1,16 +1,16 @@
 package scheduler;
-
 /**
  * Process entity
  * @author Yaxing Chen
  *
  */
-public class Process {
+public class Process{
 	
 	public int id;
 	public int cpuTime;
 	public int ioTime;
 	public int arrivalTime;
+	
 	public int startCycle = -1;
 	public int finishCycle = -1;
 	public int runCycle = 0;
@@ -29,4 +29,10 @@ public class Process {
 		this.arrivalTime = Integer.parseInt(param[3]);
 	}
 	
+	/**
+	 * for deep copy
+	 */
+	public Process clone() {
+		return new Process(this.id, this.cpuTime, this.ioTime, this.arrivalTime);
+	}
 }
