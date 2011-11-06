@@ -8,7 +8,7 @@ import strategy.*;
  * main class
  * 
  * @assumption
- * 1. processes' ids are continuous, start from 0 to n.
+ * processes' ids are consecutive, start from 0 to n.
  * 
  * @author Yaxing Chen(N16929794, yc1116@nyu.edu)
  *
@@ -69,7 +69,7 @@ public class Scheduler {
 	}
 	
 	private static void invalidParam() {
-		System.out.println("usage: Scheduler.jar <input file path> [strategy] [mode]");
+		System.out.println("usage: scheduler.jar <input file path> [strategy] [mode]");
 		System.out.println(" strategy: ");
 		System.out.println("           -1[default]: all");
 		System.out.println("           0: fcfs");
