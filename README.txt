@@ -12,7 +12,7 @@ JRE 6, JDK 1.6
 
 
 //===========Things in .zip===============//
-1. Runnable Jar: proj_scheduler_YaxingChen.jar
+1. Runnable Jar: scheduler.jar
 2. Source code: ./src
 3. JAR MANIFEST file: jar-manifest
 4. Test input files: input-1, input-2
