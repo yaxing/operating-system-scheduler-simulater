@@ -28,16 +28,16 @@ public class RR extends Strategy{
 				chkPreemptive();
 			}
 			Process curP = proc.get(running);
-			if(curP.runCycle == curP.cpuTime / 2 && curP.ioTime > 0) {
+			if(curP.runCycle == curP.cpuTime) {
+				procStatus[running] = null;
+				curP.finishCycle = cycle - 1;
+				running = -1;
+			}
+			else if(curP.ioTime > 0 && (curP.runCycle == curP.cpuTime / 2 || curP.runCycle % 2 == 0)) {
 				insertIntoQueue(running, blockedQ);
 				procStatus[running] = Status.BLOCKED;
 				running = -1;
 				curP.ioTime --;
-			}
-			else if(curP.runCycle == curP.cpuTime) {
-				procStatus[running] = null;
-				curP.finishCycle = cycle - 1;
-				running = -1;
 			}
 			else {
 				curP.runCycle ++;
@@ -45,27 +45,11 @@ public class RR extends Strategy{
 		}
 		if(running == -1) {
 			if(readyQ != null && readyQ.size() > 0) {
-				for(int i = 0; i < readyQ.size(); i ++) {
-					int curId = readyQ.get(i);
-					if(proc.get(curId).runCycle == proc.get(curId).cpuTime / 2 && proc.get(curId).ioTime > 0) {
-						procStatus[proc.get(curId).id] = Status.BLOCKED;
-						proc.get(curId).ioTime --;
-						blockedQ.add(curId);
-						readyQ.set(i, null);
-					}
-					else if(proc.get(curId).runCycle == proc.get(curId).cpuTime) {
-						procStatus[proc.get(curId).id] = null;
-						readyQ.set(i, null);
-					}
-					else {
-						running = curId;
-						procStatus[proc.get(curId).id] = Status.RUNNING;
-						proc.get(curId).runCycle ++;
-						readyQ.set(i, null);
-						break;
-					}
-				}
-				removeElesFromList(readyQ);
+				int curId = readyQ.get(0);
+				running = curId;
+				procStatus[curId] = Status.RUNNING;
+				proc.get(curId).runCycle ++;
+				readyQ.remove(0);
 			}
 			else {
 				idleCycle ++;

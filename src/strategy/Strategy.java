@@ -181,12 +181,12 @@ abstract public class Strategy {
 						readyQ.set(i, null);
 					}
 					else if(proc.get(curId).runCycle == proc.get(curId).cpuTime) {
-						procStatus[proc.get(curId).id] = null;
+						procStatus[curId] = null;
 						readyQ.set(i, null);
 					}
 					else {
 						running = curId;
-						procStatus[proc.get(curId).id] = Status.RUNNING;
+						procStatus[curId] = Status.RUNNING;
 						proc.get(curId).runCycle ++;
 						readyQ.set(i, null);
 						break;
