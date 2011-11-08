@@ -21,6 +21,8 @@ JRE 6, JDK 1.6
 
 
 //=====How to compile(interpret)=========//
+(Notice: 
+you can skip this step and directly run the runnable JAR file referring to following section)
  
 1. unzip os-scheduler-YaxingChen-N16929794.zip
 2. cd os-linker-YaxingChen-N16929794/src/
