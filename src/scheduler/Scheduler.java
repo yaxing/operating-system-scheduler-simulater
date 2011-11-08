@@ -22,7 +22,7 @@ public class Scheduler {
 										//@see Status.java
 		String inputFile = "";
 		int strategy = -1;
-		int mode = 0;
+		int mode = 1;
 		
 //		args = new String[1];
 //		args[0] = "inp2.txt";
@@ -56,15 +56,15 @@ public class Scheduler {
 		}
 		
 		if(strategy >= 0) {
-			exec(strategy, proc, procStatus, false);
+			exec(strategy, proc, procStatus, false, mode);
 		}
 		else if(strategy == -1) {
 			/**
 			 * if perform multi-strategies once, need deep copy
 			 */
-			exec(0, proc, procStatus, true);
-			exec(1, proc, procStatus, true);
-			exec(2, proc, procStatus, true);
+			exec(0, proc, procStatus, true, mode);
+			exec(1, proc, procStatus, true, mode);
+			exec(2, proc, procStatus, true, mode);
 		}
 	}
 	
@@ -82,7 +82,7 @@ public class Scheduler {
 		System.exit(0);
 	}
 	
-	private static void exec(int strategy, ArrayList<Process> proc, Status[] procStatus, boolean needDeepCopy) {
+	private static void exec(int strategy, ArrayList<Process> proc, Status[] procStatus, boolean needDeepCopy, int mode) {
 		String outputFile = "";
 		Strategy ctrl = null;
 		switch(strategy) {
@@ -100,6 +100,9 @@ public class Scheduler {
 			break;
 		default:
 			break;
+		}
+		if(mode == 0) {
+			ctrl.isPreemptive = false;
 		}
 		ctrl.start(proc, procStatus, needDeepCopy);
 		Tool.writeFile(outputFile);

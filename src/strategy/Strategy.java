@@ -60,7 +60,7 @@ abstract public class Strategy {
 	 */
 	protected int idleCycle = 0;
 	
-	protected boolean isPreemptive = true;
+	public boolean isPreemptive = true;
 	
 	/**
 	 * buffer for output from each cycle
